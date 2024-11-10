@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return; // Exit early if elements are not found
     }
 
-    // Load existing comments
-    fetch('/comments')
+    // Load existing comments from the backend
+    fetch('https://dashboard.render.com/web/srv-csoj4bogph6c73brv2l0/comments') // <-- Your Render URL
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = document.getElementById('name').value;
         const comment = document.getElementById('comment').value;
 
-        fetch('/comments', {
+        fetch('https://dashboard.render.com/web/srv-csoj4bogph6c73brv2l0/comments', { // <-- Your Render URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
