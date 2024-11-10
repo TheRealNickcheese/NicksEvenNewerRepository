@@ -15,20 +15,17 @@ jobs:
       # Checkout code
       - uses: actions/checkout@v3
 
-      # Setup Node.js environment
+      # Setup Node.js environment (optional if you're not using Node.js for your project)
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
 
-      # Install dependencies
+      # Install dependencies (Optional if you use Node.js packages)
       - run: npm install
-
-      # Build the project (if applicable)
-      - run: npm run build
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public  # Assuming your static files are in the 'public' folder
+          publish_dir: ./public  # Make sure 'public' contains your static files
