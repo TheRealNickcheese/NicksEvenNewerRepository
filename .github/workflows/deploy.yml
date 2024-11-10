@@ -1,0 +1,38 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # trigger the action on pushing to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Set up Node.js
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # Use the appropriate Node.js version
+
+    # Install dependencies
+    - name: Install dependencies
+      run: |
+        npm install
+
+    # Build static files (if needed)
+    - name: Build static files
+      run: |
+        npm run build  # Make sure to use the build command specific to your project
+
+    # Deploy to GitHub Pages
+    - name: Deploy to GitHub Pages
+      run: |
+        npm run deploy
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Ensure this is set in your GitHub repo secrets
