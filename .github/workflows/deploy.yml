@@ -7,6 +7,10 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+permissions:
+  contents: write  # Needed for writing to the repository
+  pages: write  # Needed to push to the gh-pages branch
+
 jobs:
   build:
     runs-on: ubuntu-latest
