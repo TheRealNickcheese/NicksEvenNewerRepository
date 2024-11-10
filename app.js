@@ -7,8 +7,8 @@ const cors = require('cors');  // Import the CORS package
 const app = express();
 const PORT = process.env.PORT || 3000;  // Ensure the PORT works on Render as well
 
-// Enable CORS for all origins (you can change '*' to your GitHub Pages domain for tighter security)
-app.use(cors());  // This allows requests from any origin, including your GitHub Pages site
+// Enable CORS for your GitHub Pages domain
+app.use(cors({ origin: 'https://therealnickcheese.github.io' }));  // Allow requests only from your GitHub Pages URL
 
 // Middleware to serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public'))); // Ensure your static files are in the 'public' directory
