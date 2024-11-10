@@ -1,0 +1,39 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Triggers the workflow on push to the main branch
+  workflow_dispatch:  # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Set up Node.js (Adjust version as necessary)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Use your preferred version of Node.js
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: |
+          npm install
+
+      # 4. Build the static files (if necessary, like React or other frameworks)
+      - name: Build static files
+        run: |
+          npm run build  # Adjust this if you are using a build step (like for React)
+
+      # 5. Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        run: |
+          npm run deploy  # Push the build files to the gh-pages branch
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Use your GitHub token stored in secrets
